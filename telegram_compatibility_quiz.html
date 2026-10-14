@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#171719">
+<title>Подходите ли вы друг другу?</title>
+<style>
+:root{color-scheme:dark;--bg:#171719;--panel:#222124;--line:#40363b;--text:#f7f2f4;--muted:#b9afb4;--accent:#bd5d7b;--accent2:#7c334b;--soft:#2c2227}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#302027 0,#171719 48%);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);min-height:100vh;display:flex;justify-content:center;padding:22px 14px}
+.app{width:100%;max-width:520px;margin:auto}.brand{display:flex;gap:12px;align-items:center;margin:8px 0 22px}.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,#b85b78,#69273e);display:grid;place-items:center;font-size:24px;box-shadow:0 8px 25px #0004}.eyebrow{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#d69aab;margin-bottom:4px}.brandname{font-size:14px;font-weight:700}.card{background:#201e21ed;border:1px solid #ffffff12;border-radius:24px;padding:25px;box-shadow:0 20px 65px #0004}.pill{display:inline-flex;padding:7px 10px;border:1px solid #63404c;border-radius:99px;color:#e5a5b8;font-size:12px;margin-bottom:15px}h1{font-size:clamp(29px,7vw,39px);line-height:1.08;letter-spacing:-.04em;margin:0 0 14px}h2{font-size:23px;line-height:1.2;letter-spacing:-.025em;margin:8px 0 18px}.intro,.muted{color:var(--muted);line-height:1.55;font-size:14px}.features{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}.feature{font-size:12px;color:#ddd1d6;background:#ffffff08;border:1px solid #ffffff10;padding:9px 11px;border-radius:12px}.btn{border:0;border-radius:14px;padding:15px 18px;font-size:15px;font-weight:700;cursor:pointer;width:100%;background:linear-gradient(135deg,#c76683,#8e3d57);color:white;box-shadow:0 8px 22px #7c334b35}.btn:active{transform:scale(.99)}.btn.secondary{background:#30282d;border:1px solid #514149;box-shadow:none;color:#f5e9ed;margin-top:10px}.topline{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px;margin-bottom:10px}.track{height:5px;background:#40383c;border-radius:99px;overflow:hidden;margin-bottom:24px}.fill{height:100%;background:linear-gradient(90deg,#8f3e58,#e08ba5);width:0;transition:width .2s}.question{font-size:23px;line-height:1.25;letter-spacing:-.025em;margin:0 0 9px}.hint{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:20px}.answers{display:grid;gap:10px}.answer{display:flex;align-items:center;gap:12px;width:100%;text-align:left;color:var(--text);background:#292529;border:1px solid #494047;border-radius:15px;padding:15px;cursor:pointer;font-size:14px;line-height:1.35}.answer:hover{border-color:#bd5d7b;background:#33252c}.answer .dot{width:17px;height:17px;flex:0 0 17px;border:1px solid #806975;border-radius:50%}.answer:focus-visible,.btn:focus-visible{outline:2px solid #e59bb0;outline-offset:3px}.smallnote{font-size:11px;line-height:1.5;color:#8f858a;margin-top:18px}.result-score{font-size:46px;font-weight:800;letter-spacing:-.05em;margin:6px 0}.result-score span{font-size:17px;color:var(--muted);font-weight:500;letter-spacing:0}.meter{height:8px;background:#41373c;border-radius:99px;overflow:hidden;margin:15px 0 20px}.meter>div{height:100%;background:linear-gradient(90deg,#8d3b55,#e28ba5)}.warning{border:1px solid #9e5b3d;background:#392820;border-radius:15px;padding:14px;margin:16px 0;color:#f2c7ae;font-size:13px;line-height:1.5}.good{border:1px solid #4d715f;background:#202f28;border-radius:15px;padding:14px;margin:16px 0;color:#bde2cb;font-size:13px;line-height:1.5}.result-text{font-size:14px;color:#d8cfd3;line-height:1.6}.divider{height:1px;background:#ffffff12;margin:20px 0}.hide{display:none!important}.footer{text-align:center;color:#71686d;font-size:11px;margin:16px 10px;line-height:1.5}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="brand"><div class="logo">♡</div><div><div class="eyebrow">Тест отношений</div><div class="brandname">Честный разговор о совместимости</div></div></header>
+  <section id="start" class="card">
+    <div class="pill">10 вопросов · 3–5 минут</div>
+    <h1>Вы подходите друг другу?</h1>
+    <p class="intro">Проверьте, насколько совпадают ваши взгляды на серьёзные отношения — от верности и детей до повседневной жизни и близости.</p>
+    <div class="features"><span class="feature">♡ Взгляды и ценности</span><span class="feature">↗ Совместные планы</span><span class="feature">✦ Итог с пояснением</span></div>
+    <button class="btn" id="startBtn">Пройти тест <span aria-hidden="true">→</span></button>
+    <p class="smallnote">Это авторский ориентир для разговора, а не клинический или научно валидированный психологический тест. Лучше отвечать честно, а не так, как «правильно».</p>
+  </section>
+  <section id="quiz" class="card hide" aria-live="polite">
+    <div class="topline"><span id="counter">ВОПРОС 1 ИЗ 10</span><span id="percent">10%</span></div>
+    <div class="track"><div id="fill" class="fill"></div></div>
+    <div class="pill" id="category">Ключевой критерий</div>
+    <h2 class="question" id="question"></h2>
+    <p class="hint" id="hint"></p>
+    <div class="answers" id="answers"></div>
+    <p class="smallnote">Выбирайте ответ по реальному совпадению между вами, а не по тому, насколько вам нравится партнёр.</p>
+  </section>
+  <section id="result" class="card hide" aria-live="polite">
+    <div class="pill">Ваш результат</div>
+    <h1 id="resultTitle">Совместимость</h1>
+    <div class="result-score"><span id="score">0</span><span> / 210 баллов</span></div>
+    <div class="meter"><div id="resultMeter"></div></div>
+    <p class="result-text" id="resultText"></p>
+    <div id="criticalBox"></div>
+    <div class="divider"></div>
+    <p class="muted" id="nextStep"></p>
+    <button class="btn" id="shareBtn">Поделиться результатом ↗</button>
+    <button class="btn secondary" id="restartBtn">Пройти заново</button>
+    <p class="smallnote">Результат не предсказывает судьбу отношений. Особенно важны содержание разногласий, способность договариваться и реальные поступки партнёров.</p>
+  </section>
+  <div class="footer">Авторский тест · Не заменяет личное обсуждение важных тем</div>
+</main>
+<script>
+const questions = [
+ {title:"Насколько совпадают ваши взгляды на верность?",hint:"Например: что каждый считает изменой и как вы решаете конфликты.",cat:"Ключевой критерий",critical:true,answers:[["Полностью совпадают",30],["Есть некоторые различия, но можем договориться",15],["Принципиально разные взгляды",0]]},
+ {title:"Совпадает ли ваше отношение к браку?",hint:"Важно, хотите ли вы брака вообще и что он означает для каждого.",cat:"Ключевой критерий",critical:true,answers:[["Да, наши взгляды совпадают",30],["Есть различия или сомнения",15],["Мы хотим принципиально разного",0]]},
+ {title:"Совпадают ли ваши взгляды на детей?",hint:"Обсудите не только желание иметь детей, но и примерные планы на будущее.",cat:"Ключевой критерий",critical:true,answers:[["Совпадают",30],["Частично совпадают, есть вопросы",15],["Один хочет того, чего другой не хочет",0]]},
+ {title:"Насколько совпадают ваши ожидания от семейного дохода?",hint:"Речь о желаемом уровне жизни и финансовых приоритетах, а не о текущей зарплате.",cat:"Образ жизни",answers:[["Ожидания примерно одинаковые",20],["Есть заметные различия",10],["Ожидаем принципиально разного",0]]},
+ {title:"Есть ли у вас общие увлечения?",hint:"Необязательно любить всё одно и то же — важен сам факт общих занятий.",cat:"Повседневная жизнь",answers:[["Да, есть общие увлечения",10],["Нет почти ничего общего",0]]},
+ {title:"Насколько совпадают ваши музыкальные вкусы?",hint:"Это небольшой критерий: не стоит придавать ему больше значения, чем он имеет для вас.",cat:"Повседневная жизнь",answers:[["В основном совпадают",10],["Частично совпадают",5],["Совсем не совпадают",0]]},
+ {title:"Совпадает ли ваше отношение к путешествиям?",hint:"Например: как часто ездить, куда, с каким бюджетом и уровнем комфорта.",cat:"Образ жизни",answers:[["Да, желания похожи",20],["Есть некоторые различия",10],["Хотим совершенно разного",0]]},
+ {title:"Похож ли ваш идеальный совместный день на идеальный день партнёра?",hint:"Представьте обычный свободный день: как вы хотите его провести вместе?",cat:"Образ жизни",answers:[["Да, представления совпадают",20],["Частично совпадают",10],["Представления сильно различаются",0]]},
+ {title:"Насколько совпадают ваши оценки внешности друг друга?",hint:"Сравните, насколько каждый оценивает привлекательность другого по шкале от 1 до 10. Разница в 3 и более балла — заметное расхождение.",cat:"Взаимное влечение",answers:[["Разница 0–1 балл",10],["Разница 2 балла",5],["Разница 3 балла или больше",0]]},
+ {title:"Насколько совпадают ваши сексуальные потребности и предпочтения?",hint:"Например: частота близости, желания, границы и готовность обсуждать различия.",cat:"Ключевой критерий",critical:true,answers:[["В основном совпадают, можем открыто обсуждать",30],["Есть различия, которые мы готовы обсуждать",15],["Есть принципиальные несовпадения или не готовы договариваться",0]]}
+];
+let current=0, scores=[], critical=[];
+const $=id=>document.getElementById(id);
+function show(id){["start","quiz","result"].forEach(x=>$(x).classList.toggle("hide",x!==id))}
+function renderQuestion(){
+ const q=questions[current];
+ $("counter").textContent=`ВОПРОС ${current+1} ИЗ ${questions.length}`;
+ $("percent").textContent=`${Math.round((current+1)/questions.length*100)}%`;
+ $("fill").style.width=`${(current+1)/questions.length*100}%`;
+ $("category").textContent=q.cat;
+ $("question").textContent=q.title;
+ $("hint").textContent=q.hint;
+ $("answers").innerHTML="";
+ q.answers.forEach(([label,score])=>{
+  const b=document.createElement("button");b.className="answer";
+  b.innerHTML='<span class="dot" aria-hidden="true"></span><span></span>';b.querySelector("span+span").textContent=label;
+  b.addEventListener("click",()=>choose(score,q.critical));$("answers").appendChild(b);
+ });
+}
+function choose(score,isCritical){
+ scores[current]=score;
+ critical[current]=!!isCritical&&score===0;
+ current++;
+ if(current<questions.length)renderQuestion();else renderResult();
+}
+function renderResult(){
+ const total=scores.reduce((a,b)=>a+b,0);
+ let title,desc;
+ if(total>=180){title="Очень высокое совпадение";desc="По выбранным критериям у вас много общего. Это хорошая отправная точка, но высокий балл сам по себе не гарантирует счастливых отношений."}
+ else if(total>=150){title="Высокое совпадение";desc="У вас немало общих ориентиров. Обратите внимание на отдельные различия и обсудите, насколько они важны для каждого."}
+ else if(total>=120){title="Умеренное совпадение";desc="Есть как точки соприкосновения, так и заметные различия. Полезно выяснить, какие из них можно согласовать, а какие затрагивают принципиальные жизненные планы."}
+ else if(total>=90){title="Невысокое совпадение";desc="Ваши ожидания довольно часто расходятся. Не делайте вывод только по цифре: разберите конкретные темы и посмотрите, возможны ли взаимоприемлемые решения."}
+ else {title="Низкое совпадение по выбранным критериям";desc="Ответы указывают на существенные различия в ваших ожиданиях. Важно не обвинять друг друга, а честно обсудить, можете ли вы построить подходящий обоим формат отношений."}
+ $("resultTitle").textContent=title;$("score").textContent=total;$("resultMeter").style.width=`${total/210*100}%`;$("resultText").textContent=desc;
+ const criticalIndexes=critical.map((v,i)=>v?i:-1).filter(i=>i>=0);
+ if(criticalIndexes.length){
+  const names=criticalIndexes.map(i=>questions[i].title.replace(/\?$/,"")).join("; ");
+  $("criticalBox").className="warning";
+  $("criticalBox").textContent=`Критическое расхождение: по крайней мере в одном ключевом вопросе выбран вариант принципиального несовпадения. Обратите особое внимание на тему: ${names}. Высокий общий балл не отменяет важности этого различия.`;
+ }else{
+  $("criticalBox").className="good";
+  $("criticalBox").textContent="По ключевым вопросам вы не отметили принципиального несовпадения. Всё равно обсудите детали: одинаковый ответ не всегда означает одинаковые ожидания.";
+ }
+ $("nextStep").textContent="Попробуйте пройти тест отдельно друг от друга, а затем сравнить результаты и обсудить самые важные различия без попытки переубедить партнёра.";
+ show("result");
+}
+$("startBtn").addEventListener("click",()=>{current=0;scores=[];critical=[];show("quiz");renderQuestion()});
+$("restartBtn").addEventListener("click",()=>{current=0;scores=[];critical=[];show("quiz");renderQuestion()});
+$("shareBtn").addEventListener("click",async()=>{
+ const total=scores.reduce((a,b)=>a+b,0);
+ const criticalMismatch=critical.some(Boolean);
+ const shareText=`Мой результат теста «Вы подходите друг другу?»: ${total}/210 баллов.${criticalMismatch?" Есть критическое расхождение по одному из ключевых вопросов.": " По ключевым вопросам принципиального несовпадения не отмечено."} Пройди тест и сравним результаты!`;
+ try{if(navigator.share) await navigator.share({title:"Тест совместимости",text:shareText,url:location.href});else if(navigator.clipboard){await navigator.clipboard.writeText(shareText+" "+location.href);$("shareBtn").textContent="Текст скопирован ✓";}else{prompt("Скопируйте результат:",shareText+" "+location.href)}}catch(e){}
+});
+</script>
+</body>
+</html>
